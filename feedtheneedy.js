@@ -10,6 +10,7 @@ if (Meteor.isClient) {
 
   Template.body.events({
     "submit .new-person": function (event) {
+      console.log("New Person being created");
       // Prevent default browser form submit
       event.preventDefault();
  
@@ -32,8 +33,19 @@ if (Meteor.isClient) {
 
   Template.person.events({
     "click .delete": function () {
-      console.log(event);
+      console.log(this._id);
       Persons.remove(this._id);
+    },
+    "submit .edit-person": function (event) {
+      console.log(this._id+" "+this.firstname+" "+this.lastname);
+
+      // Get value from form element
+      var firstname = event.target.firstname.value;
+      var lastname = event.target.lastname.value;
+
+      Persons.update(this._id, {
+        $set: {firstname: firstname, lastname: lastname}
+      });
     }
   });
 }
