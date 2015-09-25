@@ -7,15 +7,15 @@
  
   	<div class="jumbotron">
     <header>
-      <h1>List of People</h1>
+      <h1>Feed the Needy</h1>
     </header>
-	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add New Person</button>
+	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addNewPerson">Add New Person</button>
 
-	  <!-- Add new Person modal -->
-	  <div class="modal fade" id="myModal" role="dialog">
+	  <!-- Add New Person modal -->
+	  <div class="modal fade" id="addNewPerson" role="dialog">
 	    <div class="modal-dialog">
 	    
-	      <!-- Modal content-->
+	      <!-- New Person Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
 	          <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -29,10 +29,7 @@
 				  </div>
 				  <div class="form-group">
 				    <label for="name">Last Name:</label>
-				    <input type="text" class="form-control" id="lastname" placeholder="Type to add this persons last name">
-				  </div>
-				  <div class="checkbox">
-				    <label><input type="checkbox">Useless</label>
+				    <input type="text" class="form-control" id="lastname" placeholder="Type to add this person's last name">
 				  </div>
 				  <button type="submit" class="btn btn-default">Submit</button>
 			</form>
@@ -40,34 +37,36 @@
 	        <div class="modal-footer">
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
-	      </div>
-      
+	      </div>    
+    	</div>
+  	  </div>
     </div>
-  </div>
-    </div>
+
  	<!-- List of all the people -->
-	<div class="container">       
-	  <table class="table table-striped">
-	    <thead>
-	      <tr>
-	        <th>Firstname</th>
-	        <th>Lastname</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      {{#each persons}}
-	        {{> person}}
-	      {{/each}}
-	    </tbody>
-	  </table>
+	<div class="panel-group" id="personlist">
+		{{#each persons}}
+	 		{{> person}}
+	    {{/each}}
 	</div>
 
   </div>
 </body>
  
-<template name="person">
-  <tr>
-    <td>{{firstname}}</td>
-    <td>{{lastname}}</td>
-  </tr>
+<template name="person"> 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#personlist" href="#{{firstname}}{{lastname}}">{{firstname}} {{lastname}}</a> 
+		  <button type="button" class="delete btn btn-danger pull-right btn-s">Delete</button> 
+          <button type="button" class="edit btn btn-primary pull-right btn-s">Edit</button> 
+          <button type="button" class="refer btn btn-success pull-right btn-s">Refer</button>        
+        </h4>
+      </div>
+      <div id="{{firstname}}{{lastname}}" class="panel-collapse collapse">
+        <div class="panel-body">
+        	<p>First Name: {{firstname}}</p>
+        	<p>Last Name: {{lastname}}</p>
+        </div>
+      </div>
+    </div>
 </template>
