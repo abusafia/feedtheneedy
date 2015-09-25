@@ -22,7 +22,9 @@ if (Meteor.isClient) {
       Persons.insert({
         firstname: firstname,
         lastname: lastname,
-        createdAt: new Date() // current time
+        createdAt: new Date(), // current time
+        owner: Meteor.userId(), // _id of logged in user
+        createdBy: Meteor.user().username // username of logged in user
       });
  
       // Clear form
@@ -44,9 +46,14 @@ if (Meteor.isClient) {
       var lastname = event.target.lastname.value;
 
       Persons.update(this._id, {
-        $set: {firstname: firstname, lastname: lastname}
+        $set: {firstname: firstname, lastname: lastname},
+        $push: {editedBy: Meteor.user().username+" edited on: "+new Date()} // change this to a JSON object
       });
     }
+  });
+
+  Accounts.ui.config({
+    passwordSignupFields: "USERNAME_ONLY"
   });
 }
 

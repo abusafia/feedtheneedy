@@ -4,17 +4,20 @@
  
 <body>
   <div class="container">
- 
   	<div class="jumbotron">
+  	{{> loginButtons}}
     <header>
       <h1>Feed the Needy</h1>
     </header>
+    {{#if currentUser}}
 	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addNewPerson">Add New Person</button>
+	{{/if}}
+
+	<!-- Add a carousel to the jumbotron -->
 
 	  <!-- Add New Person modal -->
 	  <div class="modal fade" id="addNewPerson" role="dialog">
-	    <div class="modal-dialog">
-	    
+	    <div class="modal-dialog">    
 	      <!-- New Person Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
@@ -57,15 +60,18 @@
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#personlist" href="#{{firstname}}{{lastname}}">{{firstname}} {{lastname}}</a> 
+          {{#if currentUser}}
 		  <button type="button" class="delete btn btn-danger pull-right btn-s">Delete</button> 
           <button type="button" class="btn btn-primary pull-right btn-s" data-toggle="modal" data-target="#edit{{firstname}}{{lastname}}">Edit</button> 
-          <button type="button" class="btn btn-success pull-right btn-s">Refer</button>        
+          <button type="button" class="btn btn-success pull-right btn-s">Refer</button>  
+          {{/if}}      
         </h4>
       </div>
       <div id="{{firstname}}{{lastname}}" class="panel-collapse collapse">
         <div class="panel-body">
         	<p>First Name: {{firstname}}</p>
         	<p>Last Name: {{lastname}}</p>
+        	<p>Added by: {{createdBy}}</p>
         </div>
       </div>
 	</div>
@@ -74,7 +80,6 @@
 	<!-- Edit Person modal -->
 	<div class="modal fade" id="edit{{firstname}}{{lastname}}" role="dialog">
 	<div class="modal-dialog">
-
 	  <!-- Edit Person Modal content-->
 	  <div class="modal-content">
 	    <div class="modal-header">
@@ -100,7 +105,5 @@
 	  </div>    
 	</div>
 	</div>
-
-
 
 </template>
