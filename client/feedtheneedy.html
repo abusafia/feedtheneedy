@@ -14,7 +14,7 @@
 	                <span class="sr-only">Toggle Navigation</span>
 	                <span class="fa fa-chevron-down"></span> Menu
 	            </button>
-	            <a class="navbar-brand" href="#"><span class="fa fa-hand-peace-o"></span>{{> loginButtons}}</a>
+	            <a class="navbar-brand" href="#"><span class="fa fa-user"></span>&nbsp;{{> loginButtons}}</a>
 	        </div>
 	        <div class="collapse navbar-collapse" id="navCollapse">
 	            <ul class="nav navbar-nav navbar-right">
@@ -43,41 +43,11 @@
 	        {{#if currentUser}}
 	        <a class="btn btn-lg btn-success fp-buttons" href="#" data-toggle="modal" data-target="#addNewPerson">
 	            <span class="fa fa-plus-square"></span> Add Person
-	        </a>
+	        </a> <!-- This modal is present in the person.html file -->
 	        {{/if}}
 	    </div>
 	</div><!-- .carousel --> 
 	<!--end bg-carousel-->
-
-
-	  <!-- Add New Person modal -->
-	  <div class="modal fade" id="addNewPerson" role="dialog">
-	    <div class="modal-dialog">    
-	      <!-- New Person Modal content-->
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal">&times;</button>
-	          <h4 class="modal-title">Enter as much information about this person as possible and then click the Submit button</h4>
-	        </div>
-	        <div class="modal-body">
-	          <form class="new-person" role="form">
-				  <div class="form-group">
-				    <label for="name">First Name:</label>
-				    <input type="text" class="form-control" id="firstname" placeholder="Type to add this person's first name">
-				  </div>
-				  <div class="form-group">
-				    <label for="name">Last Name:</label>
-				    <input type="text" class="form-control" id="lastname" placeholder="Type to add this person's last name">
-				  </div>
-				  <button type="submit" class="btn btn-default">Submit</button>
-			</form>
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        </div>
-	      </div>    
-		</div>
-		</div> <!-- Add New Person Modal -->
 
 	{{#if currentUser}}
 	<div class="container">
@@ -90,6 +60,55 @@
 	</div> <!-- List of all the people -->
 	</div>
 	{{/if}}
+
+	{{#if currentUser}}
+	<div class="container">
+	<a class="btn btn-lg btn-success fp-buttons" href="#" data-toggle="modal" data-target="#addNewFoodbank">
+	            <span class="fa fa-plus-square"></span> Add Foodbank
+	        </a> <!-- This modal is present in the foodbank.html file -->
+
+	<!-- Add New Foodbank modal -->
+	<div class="modal fade" id="addNewFoodbank" role="dialog">
+    <div class="modal-dialog">    
+      <!-- New Foodbank Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Enter as much information about this foodbank as possible and then click the Submit button</h4>
+        </div>
+        <div class="modal-body">
+          <form class="new-foodbank" role="form">
+			  <div class="form-group">
+			    <label for="name">Name:</label>
+			    <input type="text" class="form-control" id="name" placeholder="Type to add this foodbank's  name">
+			  </div>
+			  <div class="form-group">
+			    <label for="name">Location:</label>
+			    <input type="text" class="form-control" id="location" placeholder="Type to add this foodbank's location">
+			  </div>
+			  <button type="submit" class="btn btn-default" >Submit</button>
+		</form>
+        </div>
+        <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>    
+	</div>
+	</div> <!-- Add New foodbank Modal --> 
+
+	<h2> List of Foodbanks </h2>
+ 	<!-- List of all the foodbanks -->
+	<div class="panel-group" id="foodbanklist">
+		{{#each foodbanks}}
+	 		{{> foodbank}}
+	    {{/each}}
+	</div> <!-- List of all the foodbanks -->
+	
+	</div>
+	{{/if}}
+
+
+
 
 	<!--The rest of your page content below-->
 	<div class="container">
@@ -111,7 +130,7 @@
 		  </span>
 	      <h2>What we do</h2>
 	      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-	      <p><a class="btn btn-default" href="#" role="button">What We DO »</a></p>
+	      <p><a class="btn btn-default" href="#" role="button">What We Do »</a></p>
 	    </div>
 	    <div class="col-md-4">
 	      <span class="fa-stack fa-lg fa-4x">
@@ -128,56 +147,3 @@
 
 </body>
  
-<template name="person"> 
-
-	<!-- Person Item Panel -->
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#personlist" href="#{{firstname}}{{lastname}}">{{firstname}} {{lastname}}</a> 
-          {{#if currentUser}}
-		  <button type="button" class="delete btn btn-danger pull-right btn-s">Delete&nbsp;<i class="fa fa-trash-o"></i></button> 
-          <button type="button" class="btn btn-primary pull-right btn-s" data-toggle="modal" data-target="#edit{{firstname}}{{lastname}}">Edit&nbsp;<i class="fa fa-pencil-square-o"></i></button> 
-          <button type="button" class="btn btn-success pull-right btn-s">Refer&nbsp;<i class="fa fa-hand-o-right"></i></button>  
-          {{/if}}      
-        </h4>
-      </div>
-      <div id="{{firstname}}{{lastname}}" class="panel-collapse collapse">
-        <div class="panel-body">
-        	<p>First Name: {{firstname}}</p>
-        	<p>Last Name: {{lastname}}</p>
-        	<p>Added by: {{createdBy}}</p>
-        </div>
-      </div>
-	</div> <!-- Person Item Panel -->
-
-
-	<!-- Edit Person modal -->
-	<div class="modal fade" id="edit{{firstname}}{{lastname}}" role="dialog">
-	<div class="modal-dialog">
-	  <div class="modal-content">
-	    <div class="modal-header">
-	      <button type="button" class="close" data-dismiss="modal">&times;</button>
-	      <h4 class="modal-title">Please edit the information you would like to change and click the Submit button</h4>
-	    </div>
-	    <div class="modal-body">
-	      <form class="edit-person" role="form">
-			  <div class="form-group">
-			    <label for="name">First Name:</label>
-			    <input type="text" class="form-control" id="firstname" value="{{firstname}}">
-			  </div>
-			  <div class="form-group">
-			    <label for="name">Last Name:</label>
-			    <input type="text" class="form-control" id="lastname" value="{{lastname}}">
-			  </div>
-			  <button type="submit" class="btn btn-default">Submit</button>
-		  </form>
-	    </div>
-	    <div class="modal-footer">
-	      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	    </div>
-	  </div>    
-	</div>
-	</div> <!-- Edit Person modal -->
-
-</template>
