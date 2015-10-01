@@ -33,15 +33,15 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#personlist" href="#{{firstname}}{{lastname}}">{{firstname}} {{lastname}}</a> 
+          <a data-toggle="collapse" data-parent="#personlist" href="#{{_id}}">{{firstname}} {{lastname}}</a> 
           {{#if currentUser}}
 		  <button type="button" class="delete btn btn-danger pull-right btn-s">Delete&nbsp;<i class="fa fa-trash-o"></i></button> 
-          <button type="button" class="btn btn-primary pull-right btn-s" data-toggle="modal" data-target="#edit{{firstname}}{{lastname}}">Edit&nbsp;<i class="fa fa-pencil-square-o"></i></button> 
+          <button type="button" class="btn btn-primary pull-right btn-s" data-toggle="modal" data-target="#edit{{_id}}">Edit&nbsp;<i class="fa fa-pencil-square-o"></i></button> 
           <button type="button" class="btn btn-success pull-right btn-s">Refer&nbsp;<i class="fa fa-hand-o-right"></i></button>  
           {{/if}}      
         </h4>
       </div>
-      <div id="{{firstname}}{{lastname}}" class="panel-collapse collapse">
+      <div id="{{_id}}" class="panel-collapse collapse">
         <div class="panel-body">
         	<p>First Name: {{firstname}}</p>
         	<p>Last Name: {{lastname}}</p>
@@ -52,7 +52,7 @@
 
 
 	<!-- Edit Person modal -->
-	<div class="modal fade" id="edit{{firstname}}{{lastname}}" role="dialog">
+	<div class="modal fade" id="edit{{_id}}" role="dialog">
 	<div class="modal-dialog">
 	  <div class="modal-content">
 	    <div class="modal-header">

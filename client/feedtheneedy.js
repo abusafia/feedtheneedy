@@ -42,12 +42,19 @@ Template.body.events({
 
     // Get value from form element
     var name = event.target.name.value;
-    var location = event.target.location.value;
+    var address = event.target.address.value;
+    var town = event.target.town.value;
+    var county = event.target.county.value;
+    var postcode = event.target.postcode.value;
+
 
     // Insert a person into the collection
     Foodbanks.insert({
       name: name,
-      location: location,
+      address: address,
+      town: town,
+      county: county,
+      postcode: postcode,
       createdAt: new Date(), // current time
       owner: Meteor.userId(), // _id of logged in user
       createdBy: Meteor.user().username // username of logged in user
