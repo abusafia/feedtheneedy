@@ -46,7 +46,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#foodbanklist" href="#{{_id}}">{{name}} {{address}}</a> 
+          <a data-toggle="collapse" data-parent="#foodbanklist" href="#{{_id}}">{{name}} {{address.address}}</a> 
           {{#if currentUser}}
 		  <button type="button" class="delete btn btn-danger pull-right btn-s">Delete&nbsp;<i class="fa fa-trash-o"></i></button> 
           <button type="button" class="btn btn-primary pull-right btn-s" data-toggle="modal" data-target="#edit{{_id}}">Edit&nbsp;<i class="fa fa-pencil-square-o"></i></button>  
@@ -56,7 +56,7 @@
       <div id="{{_id}}" class="panel-collapse collapse">
         <div class="panel-body">
         	<p>Name: {{name}}</p>
-        	<p>Address: {{address}}, {{town}}, {{county}}, {{postcode}}</p>
+        	<p>Address: {{address.address}}, {{address.town}}, {{address.county}}, {{address.postcode}}</p>
         	<p>Added by: {{createdBy}}</p>
         </div>
       </div>
@@ -79,19 +79,19 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="name">Address:</label>
-			    <input type="text" class="form-control" id="address" value="{{address}}">
+			    <input type="text" class="form-control" id="address" value="{{address.address}}">
 			  </div>
 			  <div class="form-group">
 			    <label for="name">Town:</label>
-			    <input type="text" class="form-control" id="town" value="{{town}}">
+			    <input type="text" class="form-control" id="town" value="{{address.town}}">
 			  </div>
 			  <div class="form-group">
 			    <label for="name">County:</label>
-			    <input type="text" class="form-control" id="county" value="{{county}}">
+			    <input type="text" class="form-control" id="county" value="{{address.county}}">
 			  </div>
 			  <div class="form-group">
 			    <label for="name">Postcode:</label>
-			    <input type="text" class="form-control" id="postcode" value="{{postcode}}">
+			    <input type="text" class="form-control" id="postcode" value="{{address.postcode}}">
 			  </div>
 			  <button type="submit" class="btn btn-default">Submit</button>
 		  </form>
